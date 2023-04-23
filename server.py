@@ -109,6 +109,8 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import flwr as fl
 import tensorflow as tf
+import os
+
 
 
 def main() -> None:
@@ -126,7 +128,7 @@ def main() -> None:
 
     # Start Flower server for 10 rounds of federated learning
     fl.server.start_server(
-        server_address="0.0.0.0:8080",
+        server_address=os.environ.get('ON_HEROKU'),
         config=fl.server.ServerConfig(num_rounds=5),
         strategy=strategy,
     )
