@@ -128,7 +128,7 @@ def main() -> None:
 
     # Start Flower server for 10 rounds of federated learning
     fl.server.start_server(
-        server_address=os.environ.get('ON_HEROKU'),
+        server_address=os.environ.get('PORT', 3001),
         config=fl.server.ServerConfig(num_rounds=5),
         strategy=strategy,
     )
